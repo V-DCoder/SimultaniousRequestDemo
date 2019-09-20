@@ -19,7 +19,7 @@ import javax.inject.Singleton
         ActivityProvideModule::class
     )
 )
-interface WeatherForecastApplicationComponent {
+interface DIApplicationComponent {
 
     fun inject(application: DemoApplication)
 

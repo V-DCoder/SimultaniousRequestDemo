@@ -3,7 +3,7 @@ package com.varun.demoapplication
 
 import android.app.Activity
 import android.app.Application
-import com.varun.demoapplication.di.DaggerWeatherForecastApplicationComponent
+import com.varun.demoapplication.di.DaggerDIApplicationComponent
 
 import com.varun.demoapplication.di.modules.AppModule
 import dagger.android.AndroidInjector
@@ -20,7 +20,7 @@ class DemoApplication : Application(), HasActivityInjector {
         super.onCreate()
 
 
-        val component = DaggerWeatherForecastApplicationComponent.builder()
+        val component = DaggerDIApplicationComponent.builder()
             .appModule(AppModule(this))
             .build()
         component.inject(this)
