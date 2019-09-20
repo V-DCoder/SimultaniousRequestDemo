@@ -1,4 +1,4 @@
-package com.apps.demo.apixuweather.di.modules
+package com.varun.demoapplication.di.modules
 
 import dagger.Module
 import dagger.Provides

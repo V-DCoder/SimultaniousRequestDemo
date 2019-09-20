@@ -1,12 +1,11 @@
-package com.apps.demo.apixuweather.di.modules
+package com.varun.demoapplication.di.modules
 
-import com.apps.demo.apixuweather.repository.RepositoryImpl
-import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepository
-import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepositoryImpl
-import com.apps.demo.apixuweather.utils.APIXUService
-import com.apps.demo.apixuweather.utils.HttpInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.varun.demoapplication.repository.RepositoryImpl
+import com.varun.demoapplication.repository.webRepo.WebRepository
+import com.varun.demoapplication.repository.webRepo.WebRepositoryImpl
+import com.varun.demoapplication.utils.APIService
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -24,16 +23,16 @@ import javax.inject.Singleton
 class RepositoryModule {
 
     @Provides
-    fun provideRepository(forecastRepository: ForecastRepository): RepositoryImpl {
-        return RepositoryImpl(forecastRepository)
+    fun provideRepository(webRepository: WebRepository): RepositoryImpl {
+        return RepositoryImpl(webRepository)
     }
 
     @Provides
     fun provideForcastRepository(
-        apixuService: APIXUService, @Named(SUBCRIBER_ON) subscriberOn: Scheduler,
+        APIService: APIService, @Named(SUBCRIBER_ON) subscriberOn: Scheduler,
         @Named(OBSERVER_ON) observerOn: Scheduler
-    ): ForecastRepository {
-        return ForecastRepositoryImpl(apixuService,subscriberOn,observerOn)
+    ): WebRepository {
+        return WebRepositoryImpl(APIService, subscriberOn, observerOn)
     }
 
 
@@ -57,19 +56,11 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideCacheOverrideInterceptor(): Interceptor {
-        return HttpInterceptor()
-    }
-
-    @Provides
-    @Singleton
     fun provideOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor,
-        cacheOverrideInterceptor: Interceptor
+        loggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addNetworkInterceptor(cacheOverrideInterceptor)
         return builder
             .build()
 
@@ -88,13 +79,13 @@ class RepositoryModule {
     }
 
     protected fun getBaseUrl(): String {
-        return "https://api.apixu.com/v1/"
+        return "https://truecaller.blog/"
     }
 
     @Provides
     @Singleton
-    fun provideAPIXUService(retrofit: Retrofit): APIXUService {
-        return retrofit.create(APIXUService::class.java)
+    fun provideAPIService(retrofit: Retrofit): APIService {
+        return retrofit.create(APIService::class.java)
     }
 
 

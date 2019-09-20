@@ -1,30 +1,23 @@
-package com.apps.demo.apixuweather.di.modules
+package com.varun.demoapplication.di.modules
 
 import android.content.Context
-import com.apps.demo.apixuweather.location.LocationManager
-import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepository
-import com.apps.demo.apixuweather.viewmodel.TodaysForecastViewModel
-import com.varun.demoapplication.WeatherForecastApplication
+import com.varun.demoapplication.repository.webRepo.WebRepository
+import com.varun.demoapplication.viewmodel.LifeAtTrueCallerViewModel
+import com.varun.demoapplication.DemoApplication
 import dagger.Module
 import dagger.Provides
 
 @Module
-class AppModule(val application: WeatherForecastApplication) {
+class AppModule(val application: DemoApplication) {
 
     @Provides
     fun provideContext(): Context {
         return application
     }
 
-
     @Provides
-    fun provideLocationManager(context: Context): LocationManager {
-        return LocationManager(context)
-    }
-
-    @Provides
-    fun provideViewModel( repository: ForecastRepository): TodaysForecastViewModel {
-        return TodaysForecastViewModel( repository)
+    fun provideViewModel(repository: WebRepository): LifeAtTrueCallerViewModel {
+        return LifeAtTrueCallerViewModel(repository)
     }
 
 

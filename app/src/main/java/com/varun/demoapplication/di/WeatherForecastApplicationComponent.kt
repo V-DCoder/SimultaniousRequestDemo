@@ -1,10 +1,10 @@
-package com.apps.demo.apixuweather.di
+package com.varun.demoapplication.di
 
-import com.apps.demo.apixuweather.di.modules.AppModule
-import com.apps.demo.apixuweather.di.modules.RepositoryModule
-import com.apps.demo.apixuweather.di.modules.RxJavaSchedulersModule
-import com.varun.demoapplication.WeatherForecastApplication
+import com.varun.demoapplication.DemoApplication
 import com.varun.demoapplication.di.modules.ActivityProvideModule
+import com.varun.demoapplication.di.modules.AppModule
+import com.varun.demoapplication.di.modules.RepositoryModule
+import com.varun.demoapplication.di.modules.RxJavaSchedulersModule
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 )
 interface WeatherForecastApplicationComponent {
 
-    fun inject(application: WeatherForecastApplication)
+    fun inject(application: DemoApplication)
 
 
 }

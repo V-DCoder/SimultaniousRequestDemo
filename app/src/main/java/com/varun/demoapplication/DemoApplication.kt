@@ -3,14 +3,15 @@ package com.varun.demoapplication
 
 import android.app.Activity
 import android.app.Application
-import com.apps.demo.apixuweather.di.DaggerWeatherForecastApplicationComponent
-import com.apps.demo.apixuweather.di.modules.AppModule
+import com.varun.demoapplication.di.DaggerWeatherForecastApplicationComponent
+
+import com.varun.demoapplication.di.modules.AppModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-class WeatherForecastApplication : Application(), HasActivityInjector {
+class DemoApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
