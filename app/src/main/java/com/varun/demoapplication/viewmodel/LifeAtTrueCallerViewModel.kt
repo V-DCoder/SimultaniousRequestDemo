@@ -42,6 +42,7 @@ class LifeAtTrueCallerViewModel @Inject constructor(
     private fun onSuccess(it: Response<String>?) {
         val str = it?.body()?.filterIndexedTo(StringBuilder(), { i, c -> i % 10 == 0 }).toString()
         Log.w("", str)
+        Log.w("response",it?.body().toString())
     }
 
     private fun onFailuar(it: Throwable?) {
