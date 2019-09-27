@@ -4,4 +4,6 @@ import com.varun.demoapplication.repository.webRepo.WebRepository
 
 interface Repository {
     val webRepository: WebRepository
+
+
 }

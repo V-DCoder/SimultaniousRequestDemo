@@ -1,6 +1,7 @@
 package com.varun.demoapplication.viewmodel
 
 import android.location.Address
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,15 +31,21 @@ class LifeAtTrueCallerViewModel @Inject constructor(
 
     fun loadWebPage() {
 
-        compositeDisposable.add(repository.getLifeAtTrueCallerPage().subscribe({ onSuccess(it) }, { onFailuar(it) }))
+        compositeDisposable.add(repository.getLifeAtTrueCallerPage()
+            .toObservable()
+            .subscribe({ onSuccess(it) }, { onFailuar(it) })
+        )
+
+
     }
 
     private fun onSuccess(it: Response<String>?) {
-
+        val str = it?.body()?.filterIndexedTo(StringBuilder(), { i, c -> i % 10 == 0 }).toString()
+        Log.w("", str)
     }
 
     private fun onFailuar(it: Throwable?) {
-
+        it?.printStackTrace()
     }
 
 

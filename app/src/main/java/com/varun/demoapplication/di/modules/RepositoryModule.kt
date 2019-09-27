@@ -6,6 +6,7 @@ import com.varun.demoapplication.repository.RepositoryImpl
 import com.varun.demoapplication.repository.webRepo.WebRepository
 import com.varun.demoapplication.repository.webRepo.WebRepositoryImpl
 import com.varun.demoapplication.utils.APIService
+import com.varun.demoapplication.utils.ConverterFactory
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -72,7 +73,8 @@ class RepositoryModule {
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+//            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(ConverterFactory())
             .baseUrl(getBaseUrl())
             .client(okHttpClient)
             .build()
